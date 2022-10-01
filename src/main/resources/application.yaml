@@ -1,0 +1,31 @@
+# You've seen properties as things link hibernate.connection.url
+# server.port=
+# server.servlet.context-path=
+server:
+  port: 9008
+  servlet:
+    context-path: /
+# in a properties file, it would look like spring.application.name
+spring:
+  application:
+  datasource:
+
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://baileydb.c5a1xliscqxz.us-east-2.rds.amazonaws.com:5432/baileydb
+    username: postgres
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
+# Default actuator gives us the health endpoint, we will add a few others
+management:
+  endpoints:
+    web:
+      exposure:
+        includes:
+          - "beans"
+          - "health"
+          - "info"
